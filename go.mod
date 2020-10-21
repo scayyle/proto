@@ -1,4 +1,4 @@
-module proto
+module github.com/scayle/proto
 
 go 1.15
 
