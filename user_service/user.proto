@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package user;
+option go_package = ".;user_service";
+
+service UserService {
+  rpc Create(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc Get(GetUserRequest) returns (GetUserResponse) {}
+  rpc Auth(AuthRequest) returns (AuthResponse) {}
+  rpc ValidateToken(ValidateTokenRequest) returns (TokenClaims) {}
+}
+
+message TokenClaims {
+  bool isAdmin = 1;
+  string userId = 2;
+  int64 expires = 3;
+}
+
+message CreateUserRequest {
+  TokenClaims claims = 1;
+  bool isAdmin = 2;
+  string username = 3;
+  string email = 4;
+  string password = 5;
+}
+
+message CreateUserResponse {
+  string id = 1;
+}
+
+message GetUserRequest {
+  TokenClaims claims = 1;
+  string id = 2;
+}
+
+message GetUserResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  string id = 1;
+  string token = 2;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message Error {
+  int32 code = 1;
+  string description = 2;
+}
