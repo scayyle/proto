@@ -15,15 +15,15 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore ./CSharpProto/CSharpProto.csproj
+      run: dotnet restore ./CSharp/GeneratedProtoClasses/GeneratedProtoClasses.csproj
     - id: get_version
       uses: battila7/get-version-action@v2
     - name: Build
-      run: dotnet build ./CSharpProto/CSharpProto.csproj --configuration Release /p:Version=${{ steps.get_version.outputs.version-without-v }} --no-restore
+      run: dotnet build ./CSharp/GeneratedProtoClasses/GeneratedProtoClasses.csproj --configuration Release /p:Version=${{ steps.get_version.outputs.version-without-v }} --no-restore
     - name: Test
-      run: dotnet test ./CSharpProto/CSharpProto.csproj --no-restore --verbosity normal
+      run: dotnet test ./CSharp/GeneratedProtoClasses/GeneratedProtoClasses.csproj --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack ./CSharpProto/CSharpProto.csproj --output nuget-packages /p:Version=${{ steps.get_version.outputs.version-without-v }}
+      run: dotnet pack ./CSharp/GeneratedProtoClasses/GeneratedProtoClasses.csproj --output nuget-packages /p:Version=${{ steps.get_version.outputs.version-without-v }}
     - name: Publish Nuget to GitHub registry
       run: dotnet nuget push ./nuget-packages/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/scayle/index.json --skip-duplicate --no-symbols true 
       env:
