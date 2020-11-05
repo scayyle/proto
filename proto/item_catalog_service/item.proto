@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package item_catalog_service;
+option go_package = ".;item_catalog_service";
+option csharp_namespace = "ItemCatalogService.gRPCService";
+
+service Item {
+  // CreatesTestItems
+  rpc CreateTestItems(CreateTestItemsRequest) returns (CreateTestItemsReply);
+}
+
+message CreateTestItemsRequest {
+}
+
+
+message CreateTestItemsReply {  
+}
