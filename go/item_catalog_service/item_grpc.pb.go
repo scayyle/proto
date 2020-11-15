@@ -4,6 +4,8 @@ package item_catalog_service
 
 import (
 	context "context"
+	"fmt"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,6 +28,8 @@ type itemClient struct {
 }
 
 func NewItemClient(cc grpc.ClientConnInterface) ItemClient {
+	fmt.Println("WARNING: Usage of github.com/scayle/proto in Go is deprecated.")
+	fmt.Println("Use github.com/scayle/proto-go instead.")
 	return &itemClient{cc}
 }
 

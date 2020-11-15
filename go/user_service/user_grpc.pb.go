@@ -4,6 +4,8 @@ package user_service
 
 import (
 	context "context"
+	"fmt"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,6 +30,8 @@ type userServiceClient struct {
 }
 
 func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
+	fmt.Println("WARNING: Usage of github.com/scayle/proto in Go is deprecated.")
+	fmt.Println("Use github.com/scayle/proto-go instead.")
 	return &userServiceClient{cc}
 }
 

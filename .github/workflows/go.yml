@@ -1,0 +1,22 @@
+name: Go
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: golang:1.15.5-alpine
+    steps:
+      - name: Install git and protoc
+        run: apk update && apk upgrade && apk add --no-cache git protoc
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+          fetch-depth: 0
+      - name: Fix permissions
+        run: chmod +x ./publish-go.sh
+      - name: Publish
+        run: ./publish-go.sh https://devscayle:${{ secrets.SCAYLE_TOKEN }}@github.com/scayle/proto-go.git
