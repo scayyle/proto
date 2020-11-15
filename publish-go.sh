@@ -20,7 +20,8 @@ git clone "$1" proto-go
 go get google.golang.org/protobuf/cmd/protoc-gen-go google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 go generate ./go
-cp -R go proto-go
+cp -R go/* proto-go/
+rm proto-go/generate.go
 cd proto-go
 git add *
 git commit -m "$version"
