@@ -5,7 +5,9 @@ option go_package = ".;user_service";
 
 service UserService {
   rpc Create(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc Update(UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc Get(GetUserRequest) returns (GetUserResponse) {}
+  rpc GetAll(GetAllUserRequest) returns (GetAllUserResponse) {}
   rpc Auth(AuthRequest) returns (AuthResponse) {}
   rpc ValidateToken(ValidateTokenRequest) returns (TokenClaims) {}
 }
@@ -28,6 +30,21 @@ message CreateUserResponse {
   string id = 1;
 }
 
+message UpdateUserRequest {
+  TokenClaims claims = 1;
+  bool isAdmin = 2;
+  string username = 3;
+  string email = 4;
+  string password = 5;
+}
+
+message UpdateUserResponse {
+  string id = 1;
+  bool isAdmin = 2;
+  string username = 3;
+  string email = 4;
+}
+
 message GetUserRequest {
   TokenClaims claims = 1;
   string id = 2;
@@ -37,6 +54,14 @@ message GetUserResponse {
   string id = 1;
   string username = 2;
   string email = 3;
+}
+
+message GetAllUserRequest {
+  TokenClaims claims = 1;
+}
+
+message GetAllUserResponse {
+  repeated GetUserResponse users = 1;
 }
 
 message AuthRequest {
@@ -51,9 +76,4 @@ message AuthResponse {
 
 message ValidateTokenRequest {
   string token = 1;
-}
-
-message Error {
-  int32 code = 1;
-  string description = 2;
 }
