@@ -32,10 +32,11 @@ message CreateUserResponse {
 
 message UpdateUserRequest {
   TokenClaims claims = 1;
-  bool isAdmin = 2;
-  string username = 3;
-  string email = 4;
-  string password = 5;
+  string id = 2;
+  bool isAdmin = 3;
+  string username = 4;
+  string email = 5;
+  string password = 6;
 }
 
 message UpdateUserResponse {
