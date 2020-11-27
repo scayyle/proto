@@ -20,7 +20,7 @@ func main() {
 
 	err = filepath.Walk("../proto", func(path string, info os.FileInfo, err error) error {
 		if strings.HasSuffix(info.Name(), ".proto") {
-			cmd := exec.Command("protoc", "--go_out=.", "--go_opt=paths=source_relative", "--go-grpc_out=.", "--go-grpc_opt=paths=source_relative", "--proto_path", "../proto/", path)
+			cmd := exec.Command("protoc", "--go_out=.", "--experimental_allow_proto3_optional", "--go_opt=paths=source_relative", "--go-grpc_out=.", "--go-grpc_opt=paths=source_relative", "--proto_path", "../proto/", path)
 			cmd.Stdin = os.Stdin
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
