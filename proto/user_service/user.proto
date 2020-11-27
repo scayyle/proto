@@ -33,17 +33,18 @@ message CreateUserResponse {
 message UpdateUserRequest {
   TokenClaims claims = 1;
   string id = 2;
-  bool isAdmin = 3;
-  string username = 4;
-  string email = 5;
-  string password = 6;
+  // optional is experimental
+  optional bool isAdmin = 3;
+  optional string username = 4;
+  optional string email = 5;
+  optional string password = 6;
 }
 
 message UpdateUserResponse {
   string id = 1;
-  bool isAdmin = 2;
-  string username = 3;
-  string email = 4;
+  string username = 2;
+  string email = 3;
+  bool isAdmin = 4;
 }
 
 message GetUserRequest {
@@ -55,6 +56,7 @@ message GetUserResponse {
   string id = 1;
   string username = 2;
   string email = 3;
+  bool isAdmin = 4;
 }
 
 message GetAllUserRequest {
