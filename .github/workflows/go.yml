@@ -11,7 +11,7 @@ jobs:
     container: golang:1.15.5-alpine
     steps:
       - name: Install git and protoc
-        run: apk update && apk upgrade && apk add --no-cache git protoc
+        run: apk update && apk upgrade && apk add --no-cache git protoc protobuf-dev
       - uses: actions/checkout@v2
         with:
           clean: false
